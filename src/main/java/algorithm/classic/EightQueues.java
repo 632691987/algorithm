@@ -3,6 +3,9 @@ package algorithm.classic;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 八个皇后不能同一直线，不能同一竖线，不能同一邪线
  */
@@ -10,16 +13,20 @@ public class EightQueues {
 
     int max = 8;
     int[] array = new int[max];
+
     static int count = 0;
+    static List<int[]> arrays = new ArrayList<>();
 
     @Test
     public void testDemo() {
         check(0);
+        System.out.println("count=[" + arrays.size() + "]");
     }
 
     private void check(int n) {
         if(n==max) {
-            print();
+            count++;
+            arrays.add(array);
             return;
         }
 
@@ -39,12 +46,4 @@ public class EightQueues {
         }
         return true;
     }
-
-    private void print() {
-        for(int num : array) {
-            System.out.printf("%d\t", num);
-        }
-        System.out.println();
-    }
-
 }
