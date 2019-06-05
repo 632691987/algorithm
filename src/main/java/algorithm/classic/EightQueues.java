@@ -14,7 +14,6 @@ public class EightQueues {
     int max = 8;
     int[] array = new int[max];
 
-    static int count = 0;
     static List<int[]> arrays = new ArrayList<>();
 
     @Test
@@ -25,7 +24,6 @@ public class EightQueues {
 
     private void check(int n) {
         if(n==max) {
-            count++;
             arrays.add(array);
             return;
         }
