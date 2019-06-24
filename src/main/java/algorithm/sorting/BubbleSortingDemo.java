@@ -1,19 +1,12 @@
 package algorithm.sorting;
 
-
-import org.junit.Test;
-
-import java.util.Arrays;
-
 /**
  * 冒泡排序
  */
-public class BubbleSortingDemo {
+public class BubbleSortingDemo extends SortInterface {
 
-    @Test
-    public void testDemo() {
-        int[] arr = new int[]{1,2,4,3,5};
-
+	@Override
+	public void coreAlorithm(int[] arr) {
         int n = arr.length;
         int temp;
         for(int i = 0; i < n; i++) {
@@ -28,8 +21,7 @@ public class BubbleSortingDemo {
             }
             if(!hasChanged) break;
         }
-        System.out.println(Arrays.toString(arr));
-    }
+	}
 
 
 }

@@ -1,18 +1,12 @@
 package algorithm.sorting;
 
-import org.junit.Test;
-
-import java.util.Arrays;
-
-public class ChooseSorting {
+public class ChooseSorting extends SortInterface {
 
     //核心思想：
     //第一次，找到最少得，然后跟数组第一个数字交换
 
-    @Test
-    public void test() {
-        int[] arr = new int[]{1,2,3,4,5};
-
+	@Override
+	public void coreAlorithm(int[] arr) {
         int min, flag = 0, temp;
         for(int x = 0; x < arr.length; x++) {
             min = Integer.MAX_VALUE;
@@ -26,7 +20,6 @@ public class ChooseSorting {
             arr[x] = min;
             arr[flag] = temp;
         }
-        System.out.println(Arrays.toString(arr));
-    }
+	}
 
 }
