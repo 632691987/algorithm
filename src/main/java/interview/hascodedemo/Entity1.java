@@ -16,13 +16,10 @@ public class Entity1 {
 
 	@Override
 	public int hashCode() {
-		Random r = new Random(1000);
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + age;
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode()) + r.nextInt();
-		return result;
+		return 100;
 	}
+
+
 
 
 

@@ -1,5 +1,6 @@
 package interview.lock;
 
+import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
@@ -58,7 +59,7 @@ class ProducerConsumerData {
 	public void increment() throws Exception {
 		lock.lock();
 		System.out.println("Inside the function increment");
-		TimeUnit.SECONDS.sleep(10);
+		TimeUnit.SECONDS.sleep(new Random().nextInt(3));
 		try {
 			while (number != 0) {
 				condition.await();
@@ -76,7 +77,7 @@ class ProducerConsumerData {
 	public void decrement() throws Exception {
 		lock.lock();
 		System.out.println("Inside the function decrement");
-		TimeUnit.SECONDS.sleep(10);
+		TimeUnit.SECONDS.sleep(new Random().nextInt(3));
 		try {
 			while (number == 0) {
 				condition.await();

@@ -11,20 +11,22 @@ import java.util.concurrent.TimeUnit;
  */
 public class CyclicBarrierDemo {
 	public static void main(String[] args) {
-		CyclicBarrier cyclicBarrier = new CyclicBarrier(7, () -> {
+		CyclicBarrier cyclicBarrier = new CyclicBarrier(3, () -> {
+			System.out.println("=================start");
 			try {
 				TimeUnit.SECONDS.sleep(3);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.println("=================");
+			System.out.println("=================end");
 		});
 
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < 3; i++) {
 			new Thread(() -> {
 				try {
-					cyclicBarrier.await();// 完成cyclicBarrier 后才运行
-					System.out.println(Thread.currentThread().getName() + " about to finish");
+					System.out.println("I am thread " + Thread.currentThread().getName() + ", doing anything, start");
+					cyclicBarrier.await();// 所有线程来到某个交汇点，然后才运行上面的代码，等待上面那个函数完成才继续
+					System.out.println("I am thread " + Thread.currentThread().getName() + ", doing anything, finish");
 				} catch (InterruptedException | BrokenBarrierException e) {
 					e.printStackTrace();
 				}

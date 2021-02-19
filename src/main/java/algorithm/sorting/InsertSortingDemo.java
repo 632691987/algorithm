@@ -10,18 +10,18 @@ import org.junit.Test;
  * 2）有序队列（只有一个元素）
  * 
  * 然后逐步把每个元素从无序队列拉到有序队列
- *
+ * 时间复杂度：O(n^2)，最优时间复杂度：O(n),平均时间复杂度：O(n^2)
  */
 public class InsertSortingDemo extends SortInterface {
 	
 	public void coreAlorithm(int[] arr) {
 		for(int index = 1; index < arr.length; index ++) {
-			int insertVal = arr[index];
-			int insertIndex = index - 1;
-			while( insertIndex >= 0 && insertVal < arr[insertIndex] ) {
-				arr[insertIndex+1] =  arr[insertIndex];
-				arr[insertIndex] = insertVal;
-				insertIndex --;
+			int currentValue = arr[index];
+			int cursor = index - 1;
+			while( cursor >= 0 && currentValue < arr[cursor] ) {
+				arr[cursor+1] =  arr[cursor];
+				arr[cursor] = currentValue;
+				cursor --;
 			}
 		}
 	}

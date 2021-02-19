@@ -20,7 +20,7 @@
 		<dependency>
 		    <groupId>cglib</groupId>
 		    <artifactId>cglib</artifactId>
-		    <version>3.2.12</version>
+		    <version>3.3.0</version>
 		</dependency>
 
 		<dependency>
@@ -47,7 +47,13 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-        </plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.1.2</version>
+			</plugin>
+		</plugins>
     </build>
 
 
