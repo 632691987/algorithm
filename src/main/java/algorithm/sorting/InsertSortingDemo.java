@@ -5,6 +5,9 @@ import java.util.Arrays;
 import org.junit.Test;
 
 /**
+ * [直接插入排序]
+ *
+ *
  * 一开始，把一个列变成两部分：
  * 1）无序队列(有N-1个元素)
  * 2）有序队列（只有一个元素）
