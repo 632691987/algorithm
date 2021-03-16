@@ -1,0 +1,4 @@
+MySQL查询字段区不区分大小写
+
+ - utf8_general_ci，表示不区分大小写
+ - utf8_general_cs, 表示区分大小写

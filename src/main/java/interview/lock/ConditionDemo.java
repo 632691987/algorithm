@@ -13,8 +13,8 @@ public class ConditionDemo {
 	
 	public static void main(String[] args) {
 		ConditionResource resource = new ConditionResource();
-		new Thread(() -> {resource.printA();}, "TT1").start(); 
-		new Thread(() -> {resource.printB();}, "TT2").start(); 
+		new Thread(() -> {resource.printA();}, "TT1").start();
+		new Thread(() -> {resource.printB();}, "TT2").start();
 		new Thread(() -> {resource.printC();}, "TT3").start(); 
 	}
 	

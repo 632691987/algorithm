@@ -207,19 +207,15 @@ vincent@ubuntu:~$ docker port tomcat_try
 由于默认是子网方式（bridge）,因此本身默认是能够互通的
 
 Step 1:
-docker network create -d bridge lamp
-docker network create -d bridge lnmp
+docker network create -d bridge --subnet=x.x.x.0/24 lamp
+docker network create -d bridge --subnet=x.x.x.0/24 lnmp
 
 
 Step 2:
-docker run --name tomcat11 --network=lamp -d tomcat:v1.0
-docker run --name tomcat12 --network=lanp -d tomcat:v1.0
+docker run --name tomcat11 --network=lamp -d tomcat:v1.0 --ip x.x.x.x
+docker run --name tomcat12 --network=lanp -d tomcat:v1.0 --ip x.x.x.x
 
 这样就造成 tomcat11和 tomcat12 不在同一个子网里面了例如 172.11.0.1 和 172.12.0.01
-
-
-
-
 ======================================================================================================
 数据持久化
 
@@ -235,9 +231,9 @@ FROM centos:latest
 MAINTAINER vincentzhang@outlook.es
 
 RUN touch /tmp/1.txt
-RUN mkdir /data
+RUN mkdir /data // RUN命令是创建Docker镜像（image）的步骤，RUN命令对Docker容器（ container）造成的改变是会被反映到创建的Docker镜像上的
 VOLUME /data
-CMD tail -f /tmp/1.txt
+CMD tail -f /tmp/1.txt//CMD命令是当Docker镜像被启动后Docker容器将会默认执行的命令
 ]]]
 
 docker rm -f -v test2 删除的时候顺便把卷也删除
@@ -280,3 +276,49 @@ docker run --name test2 -v /data:/data -d test:v1.0
 第二种：直接从test2继承
 docker run -name test2 -d test:v2.0
 docker run -name test22 --volumes-from test2 -d test:v2.0
+
+===========================================================================================
+
+Docker copy 和 add 的区别
+
+copy 就是本地 copy 文件或者目录
+add  可以把网络文件加进去。但是如果是要求认证才能下载的说话就要用 RUN wget 或者 RUN curl
+===========================================================================================
+
+CMD 和 RUN 的区别
+
+RUN 在构建的时候执行，并生成一个新的镜像，
+
+CMD 在容器运行的时候执行，在构建时不进行任何操作。
+每个Dockerfile只能有一条CMD命令，如果指定了多条命令，只有最后一条会被执行。
+
+===========================================================================================
+
+EXPORT 22 80 443
+ENV key value
+VOLUME ["/data"]
+WORKDIR /path/to/workdir
+
+
+===========================================================================================
+
+
+14.ARG
+说明：指定一些镜像内使用的参数（例如版本号信息），这些参数在执行docker build命令时才以--build-arg<varname>=<value>格式传入。
+格式：
+ARG <name> [=<default value>]
+
+===========================================================================================
+
+10.ENTRYPOINT
+说明：指定镜像的默认入口命令，该入口命令会在启动容器时作为根命令执行，所以传入值作为该命令的参数。
+格式：
+ENTRYPOINT ["executable","param1","param2"] exec调用执行
+ENTRYPOINT command param1 param2 shell中执行
+
+此时，CMD指令指定值将作为根命令的参数。
+每个Dockerfile中只能有一个ENTRYPOINT，当指定多个时，只有最后一个有效。
+在运行时，可以被 --entrypoint参数覆盖掉。
+
+===========================================================================================
+

@@ -6,3 +6,14 @@ I/O 与 NIO 最重要的区别是数据打包和传输的方式， I/O 以流的
 
 基本上，所有的 IO 在 NIO 中都从一个Channel 开始。Channel 我们称之为通道， 数据可以从Channel通道中读到Buffer中，也可以从Buffer 写到Channel中
 Selector允许单线程处理多个 Channel。如果你的应用打开了多个连接（通道），但每个连接的流量都很低，使用Selector就会很方便。
+
+                       Waiting for data               Copy data from kernal to user
+blocking IO                block                             block
+
+nonblocking IO      keep asking and keep answering     blocked
+
+IO multiplexing       blocked                              block
+
+signal driven IO
+
+asynchronous IO         initiative                       notification

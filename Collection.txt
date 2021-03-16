@@ -1,0 +1,8 @@
+TreeSet 可以添加没有实现 comparable 的 object, 但是会runtime exception
+
+HashMap 和 TreeMap 都是非线程安全
+
+HashMap 关于 hashcode 和 equals 函数的理解:
+1, 首先通过 hashcode 计算 object 在哪个 bucket 里面，然后通过 equals 比较
+2, 如果 hashcode 计算一样，那么大家都在同一个 bucket 里面，会导致查找效率变慢
+3, 如果 equals 没有做好，那么可能无法找到相同的 object

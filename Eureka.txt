@@ -1,0 +1,9 @@
+Q:怎么解决Eureka某一个服务挂掉的问题？
+A:
+1, 如果你的eureka客户端是是一个spring boot应用，可以通过调用以下代码通知注册中心下线。
+DiscoveryManager.getInstance().shutdownComponent();
+
+2, eureka.server.eviction-interval-timer-in-ms改小，默认60秒
+
+3, 为了让注册中心马上知道服务要下线， 可以向eureka 注册中心发送delete 请求
+DELETE:格式为 /eureka/apps/{application.name}
